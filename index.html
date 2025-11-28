@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>키즈홈 - 어린이집·유치원 통합관리</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Noto Sans KR', 'sans-serif'] },
+          colors: { primary: '#18C9FF' }
+        }
+      }
+    }
+  </script>
+  <style>
+    .island-hover:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body class="font-sans">
+
+  <!-- Header -->
+  <header class="bg-white px-10 h-[70px] flex items-center justify-between shadow-md fixed top-0 left-0 right-0 z-50">
+    <div class="flex items-center gap-10">
+      <a href="#" onclick="goToMain()" class="flex items-center cursor-pointer">
+        <img src="https://raw.githubusercontent.com/heung-D/kidshome/b7e475a2240bdd3b9337d27815b0c5ac0c501fca/%ED%82%A4%EC%A6%88%ED%99%88%20%EB%A1%9C%EA%B3%A0.svg" alt="키즈홈" class="h-10">
+      </a>
+      <nav class="flex gap-1">
+        <button onclick="openDetail(1)" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100 transition-all">회계관리와 필수정산</button>
+        <button onclick="openDetail(2)" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100 transition-all">특별한기능</button>
+        <button onclick="openDetail(3)" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100 transition-all">직원관리</button>
+        <button onclick="openDetail(4)" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100 transition-all">세무관리</button>
+        <button onclick="openDetail(5)" class="nav-btn px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100 transition-all">커뮤니티</button>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="https://www.flowershop.co.kr" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 py-2 bg-pink-50 hover:bg-pink-100 rounded-lg transition-all cursor-pointer group" title="전국 꽃배달 서비스">
+        <span class="text-2xl group-hover:scale-110 transition-transform">🕊️</span>
+        <span class="text-xl group-hover:scale-110 transition-transform">🌸</span>
+        <span class="text-xs text-pink-600 font-semibold">꽃배달</span>
+      </a>
+      <button onclick="openLogin()" class="px-6 py-2.5 bg-[#18C9FF] hover:bg-sky-500 text-white rounded-lg font-bold text-sm transition-all shadow-lg shadow-sky-400/40">로그인</button>
+    </div>
+  </header>
+
+  <!-- Main Visual -->
+  <main id="mainVisual" class="bg-[#18C9FF] min-h-screen pt-[70px] flex items-center justify-center">
+    <div class="relative w-[1400px] h-[700px]">
+      <!-- 이용가이드 -->
+      <div class="absolute left-0 top-[42%] cursor-pointer transition-transform island-hover">
+        <img src="https://github.com/heung-D/kidshome/blob/main/%EC%9D%B4%EC%9A%A9%EA%B0%80%EC%9D%B4%EB%93%9C.png?raw=true" alt="이용가이드" class="w-[120px]">
+      </div>
+      <!-- 세무관리 좌상단 -->
+      <div onclick="openDetail(4)" class="absolute left-[2%] top-[5%] cursor-pointer transition-transform island-hover">
+        <img src="https://github.com/heung-D/kidshome/blob/main/%EC%84%B8%EB%AC%B4%EA%B4%80%EB%A6%AC.png?raw=true" alt="세무관리" class="w-[280px]">
+      </div>
+      <!-- 회계관리와 필수정산 -->
+      <div onclick="openDetail(1)" class="absolute left-[33%] top-[0%] cursor-pointer transition-transform island-hover">
+        <img src="https://github.com/heung-D/kidshome/blob/main/%ED%9A%8C%EA%B3%84%EA%B4%80%EB%A6%AC%EC%99%80%ED%95%84%EC%88%98%EC%A0%95%EC%82%B0.png?raw=true" alt="회계관리와 필수정산" class="w-[320px]">
+      </div>
+      <!-- 직원관리 -->
+      <div onclick="openDetail(3)" class="absolute left-[68%] top-[3%] cursor-pointer transition-transform island-hover">
+        <img src="https://github.com/heung-D/kidshome/blob/main/%EC%A7%81%EC%9B%90%EA%B4%80%EB%A6%AC.png?raw=true" alt="직원관리" class="w-[280px]">
+      </div>
+      <!-- 특별한기능 -->
+      <div onclick="openDetail(2)" class="absolute left-[15%] top-[48%] cursor-pointer transition-transform island-hover">
+        <img src="https://github.com/heung-D/kidshome/blob/main/%ED%8A%B9%EB%B3%84%ED%95%9C%EA%B8%B0%EB%8A%A5.png?raw=true" alt="특별한기능" class="w-[280px]">
+      </div>
+      <!-- 커뮤니티 -->
+      <div onclick="openDetail(5)" class="absolute left-[45%] top-[45%] cursor-pointer transition-transform island-hover">
+        <img src="https://github.com/heung-D/kidshome/blob/main/%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0.png?raw=true" alt="커뮤니티" class="w-[280px]">
+      </div>
+      <!-- 세무관리 우하단 -->
+      <div onclick="openDetail(4)" class="absolute left-[75%] top-[50%] cursor-pointer transition-transform island-hover">
+        <img src="https://github.com/heung-D/kidshome/blob/main/%EC%84%B8%EB%AC%B4%EA%B4%80%EB%A6%AC.png?raw=true" alt="세무관리" class="w-[200px]">
+      </div>
+    </div>
+  </main>
+
+  <!-- Detail Page -->
+  <div id="detailPage" class="hidden min-h-screen pt-[70px]">
+    <div class="bg-gray-50 px-10 py-4 border-b border-gray-200 flex items-center gap-4">
+      <button onclick="goToMain()" class="bg-white border border-gray-300 rounded-md px-4 py-1.5 text-sm text-gray-600 hover:bg-gray-50">← 메인</button>
+      <h2 id="pageTitle" class="text-xl font-bold text-gray-800">회계관리와 필수정산</h2>
+    </div>
+    <div id="tabsContainer" class="bg-white px-10 border-b border-gray-200 flex gap-1 flex-wrap"></div>
+    <div class="p-10 bg-gray-100 min-h-[calc(100vh-170px)]">
+      <div id="contentWrapper" class="max-w-4xl mx-auto"></div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-[100]" onclick="closeLogin(event)">
+    <div class="bg-white rounded-2xl p-10 w-[420px] shadow-2xl" onclick="event.stopPropagation()">
+      <div class="text-center mb-8">
+        <img src="https://raw.githubusercontent.com/heung-D/kidshome/b7e475a2240bdd3b9337d27815b0c5ac0c501fca/%ED%82%A4%EC%A6%88%ED%99%88%20%EB%A1%9C%EA%B3%A0.svg" alt="키즈홈" class="h-12 mx-auto mb-4">
+      </div>
+      <div class="flex mb-6 bg-gray-100 rounded-xl p-1">
+        <button id="daycareBtn" onclick="setLoginType('daycare')" class="flex-1 py-3.5 rounded-lg font-bold text-[15px] transition-all bg-[#18C9FF] text-white">어린이집</button>
+        <button id="kindergartenBtn" onclick="setLoginType('kindergarten')" class="flex-1 py-3.5 rounded-lg font-bold text-[15px] transition-all text-gray-500">유치원</button>
+      </div>
+      <div id="loginIndicator" class="bg-sky-50 text-sky-600 py-3 px-4 rounded-lg mb-5 text-center text-sm font-semibold">🏫 어린이집 로그인</div>
+      <div class="mb-4">
+        <label class="block text-sm text-gray-600 font-semibold mb-1.5">아이디</label>
+        <input type="text" placeholder="아이디를 입력하세요" class="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl text-sm outline-none focus:border-[#18C9FF] transition-colors">
+      </div>
+      <div class="mb-6">
+        <label class="block text-sm text-gray-600 font-semibold mb-1.5">비밀번호</label>
+        <input type="password" placeholder="비밀번호를 입력하세요" class="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl text-sm outline-none focus:border-[#18C9FF] transition-colors">
+      </div>
+      <button class="w-full py-4 bg-[#18C9FF] text-white rounded-xl text-base font-bold shadow-lg shadow-sky-400/40 hover:bg-sky-500 transition-colors">로그인</button>
+      <div class="mt-5 flex justify-center gap-5 text-sm text-gray-400">
+        <span class="cursor-pointer hover:text-[#18C9FF]">아이디 찾기</span>
+        <span>|</span>
+        <span class="cursor-pointer hover:text-[#18C9FF]">비밀번호 찾기</span>
+        <span>|</span>
+        <span class="cursor-pointer hover:text-[#18C9FF]">회원가입</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const pageData = {
+      1: { title: '회계관리와 필수정산', tabs: ['아주쉬운 회계정리', '필요경비정산', '누리과정정산', '시간제보육정산'] },
+      2: { title: '특별한기능', tabs: ['지자체연동서비스', '영수증등록서비스', '쇼핑몰영수증자동수집', 'CMS스쿨뱅킹'] },
+      3: { title: '직원관리', tabs: ['급여관리서비스', '4대보험신고', '4대보험료 자동조회', '고용·산재 보수총액 신고', '근로자통합사이트'] },
+      4: { title: '세무관리', tabs: ['원천세업무', '연말정산'] },
+      5: { title: '커뮤니티', tabs: ['어린이집 신규 문의', '유치원 신규 문의', 'SONO 이용신청', '행정처분상담', '노무분쟁상담'] }
+    };
+
+    let currentPage = 1, currentTab = 0, loginType = 'daycare';
+
+    function goToMain() {
+      document.getElementById('mainVisual').classList.remove('hidden');
+      document.getElementById('detailPage').classList.add('hidden');
+      document.querySelectorAll('.nav-btn').forEach(btn => { btn.classList.remove('bg-sky-100', 'text-sky-500'); btn.classList.add('text-gray-600'); });
+    }
+
+    function openDetail(pageId) {
+      currentPage = pageId; currentTab = 0;
+      document.getElementById('mainVisual').classList.add('hidden');
+      document.getElementById('detailPage').classList.remove('hidden');
+      document.getElementById('pageTitle').textContent = pageData[pageId].title;
+      document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+        btn.classList.toggle('bg-sky-100', i + 1 === pageId);
+        btn.classList.toggle('text-sky-500', i + 1 === pageId);
+        btn.classList.toggle('text-gray-600', i + 1 !== pageId);
+      });
+      renderTabs(); renderContent();
+    }
+
+    function renderTabs() {
+      document.getElementById('tabsContainer').innerHTML = pageData[currentPage].tabs.map((tab, i) =>
+        `<button onclick="switchTab(${i})" class="px-6 py-4 text-sm font-medium transition-all border-b-[3px] ${i === currentTab ? 'border-[#18C9FF] text-[#18C9FF] font-bold' : 'border-transparent text-gray-500 hover:text-[#18C9FF]'}">${tab}</button>`
+      ).join('');
+    }
+
+    function switchTab(i) { currentTab = i; renderTabs(); renderContent(); }
+
+    function renderContent() {
+      const w = document.getElementById('contentWrapper');
+      if (currentPage === 1 && currentTab === 0) {
+        w.innerHTML = `
+          <div class="bg-gradient-to-r from-[#18C9FF] to-sky-600 rounded-2xl p-8 mb-8 text-white">
+            <h2 class="text-3xl font-bold mb-4">아주 쉬운 회계정리</h2>
+            <p class="text-lg opacity-95">키즈홈의 최신기능으로 회계 정리를 하시고, 버튼 한번으로 보육통합으로 DATA 자동전송!</p>
+          </div>
+          <div class="grid grid-cols-2 gap-5 mb-8">
+            <div class="bg-sky-50 rounded-xl p-6 border border-sky-100"><div class="text-4xl mb-3">🌐</div><h4 class="font-bold text-lg mb-2 text-gray-800">언제 어디서든</h4><p class="text-sm text-gray-600 leading-relaxed">컴퓨터, 핸드폰, 노트북 모든 장비에서 100% 사용 가능한 최신 프로그램</p></div>
+            <div class="bg-sky-50 rounded-xl p-6 border border-sky-100"><div class="text-4xl mb-3">🔓</div><h4 class="font-bold text-lg mb-2 text-gray-800">공인인증서 불필요</h4><p class="text-sm text-gray-600 leading-relaxed">번거로운 공인인증서 없이 간편하게 접속</p></div>
+            <div class="bg-sky-50 rounded-xl p-6 border border-sky-100"><div class="text-4xl mb-3">🏦</div><h4 class="font-bold text-lg mb-2 text-gray-800">실시간 연동</h4><p class="text-sm text-gray-600 leading-relaxed">은행과 실시간 연동되어 회계 작업시간이 줄어듭니다</p></div>
+            <div class="bg-sky-50 rounded-xl p-6 border border-sky-100"><div class="text-4xl mb-3">📊</div><h4 class="font-bold text-lg mb-2 text-gray-800">자동 정산</h4><p class="text-sm text-gray-600 leading-relaxed">필요경비 정산, 아동별 정산서도 기본 탑재</p></div>
+          </div>
+          <div class="bg-amber-50 rounded-xl p-6 mb-8 border border-amber-200">
+            <h4 class="font-bold text-lg text-amber-600 mb-3 flex items-center gap-2">💼 급여 관리와 4대보험 관리</h4>
+            <p class="text-sm text-gray-600 leading-relaxed">키즈홈의 최대 자랑인건 모두 아시죠! 원장님의 능력에 따라 다양한 상품을 선택 할 수 있고, 월 사용료 또한 아주 저렴합니다.</p>
+          </div>
+          <div class="bg-white rounded-xl p-8 border-2 border-[#18C9FF] mb-8">
+            <h3 class="text-2xl font-bold text-[#18C9FF] text-center mb-6">📦 장부 배송 서비스</h3>
+            <div class="grid grid-cols-3 gap-6 text-center">
+              <div><div class="text-5xl mb-3">📋</div><p class="text-sm text-gray-600">이제 출력하지 마시고<br>장부를 책으로 택배 받으세요~</p></div>
+              <div><div class="text-5xl mb-3">💰</div><p class="text-sm text-gray-600">월 가정기준 6,600원에<br>출력해서 택배로 보내드립니다</p></div>
+              <div><div class="text-5xl mb-3">📚</div><p class="text-sm text-gray-600">장부 5년간 출력해서 보관</p></div>
+            </div>
+          </div>
+          <div class="bg-green-50 rounded-xl p-8 border border-green-200 mb-8">
+            <h3 class="text-xl font-bold text-green-700 text-center mb-5">👩‍💼 전담 매니저는 어떤 사람인가요?</h3>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3 bg-white p-3 rounded-lg"><span class="text-green-500 text-lg">✓</span><span class="text-sm text-gray-700">비영리 ERP 인사 노무 4대보험 관리사 2급 자격증을 모두 보유하고 있습니다</span></div>
+              <div class="flex items-center gap-3 bg-white p-3 rounded-lg"><span class="text-green-500 text-lg">✓</span><span class="text-sm text-gray-700">비영리 ERP 회계 세무 관리사 2급 자격증을 모두 보유하고 있습니다</span></div>
+              <div class="flex items-center gap-3 bg-white p-3 rounded-lg"><span class="text-green-500 text-lg">✓</span><span class="text-sm text-gray-700">원장님 원을 한사람이 통합 관리 해드립니다</span></div>
+            </div>
+          </div>
+          <div class="text-center p-8 bg-gradient-to-r from-amber-200 to-amber-300 rounded-xl">
+            <p class="text-lg text-amber-900 mb-4">이번 기회에 <strong>키즈홈</strong> 한번 이용해 보세요~!!</p>
+            <button class="px-10 py-4 bg-[#18C9FF] text-white rounded-lg font-bold shadow-lg shadow-sky-400/40 hover:bg-sky-500 transition-colors">무료 체험 신청하기</button>
+          </div>`;
+      } else if (currentPage === 1 && currentTab === 1) {
+        w.innerHTML = `
+          <div class="bg-gradient-to-r from-[#18C9FF] to-sky-600 rounded-2xl p-8 mb-8 text-white">
+            <h2 class="text-3xl font-bold mb-4">필요경비정산</h2>
+            <p class="text-lg opacity-95">반기별로 정산하는 필요경비, 키즈홈에서 자동으로!</p>
+          </div>
+          <div class="bg-white rounded-xl p-8 mb-6 shadow-sm">
+            <h3 class="text-xl font-bold text-gray-800 mb-5">✨ 주요 기능</h3>
+            <div class="space-y-3">
+              ${['필요경비는 반기별로 정산을 하셔야 됩니다','키즈홈에서 회계 정리만으로 자동으로 필요경비 정산이 됩니다','정산서 출력까지 알아서 척척','상반기 / 하반기 / 전체 출력까지 자동으로','14% 일반관리비 사용내용까지 입력하실 수 있습니다','인천 지역 아동별 필요경비 정산까지도 알아서 척척 ^^','중요한건 1:1 담당 매니저가 도와 주실꺼예요 ^^'].map(t => `<div class="flex items-start gap-3 p-3 bg-sky-50 rounded-lg"><span class="text-[#18C9FF]">✓</span><span class="text-sm text-gray-700">${t}</span></div>`).join('')}
+            </div>
+          </div>
+          <div class="bg-yellow-50 rounded-xl p-6 border border-yellow-200">
+            <h4 class="font-bold text-lg text-yellow-600 mb-4">📋 필요경비 정산지침</h4>
+            <div class="text-sm text-gray-600 leading-loose">
+              <p class="mb-2"><strong>○</strong> 반기별로 보호자별 수납액, 실 사용금액, 남은 금액을 정산하여 그 내역을 어린이집 운영위원회에 보고하거나 보호자에게 알려야 함</p>
+              <p class="mb-2 pl-4 text-gray-500 text-xs">※ 실 사용금액은 해당 건별 금액으로 정산 가능(남은 금액은 개인별 정산)</p>
+              <p class="mb-2"><strong>-</strong> 반기별로 기타 필요경비(221목) 총 수납액의 일정비율(14% 이내)을 일반관리비로 인정하여 관리운영비로 집행할 수 있음</p>
+              <p><strong>-</strong> 특별활동비는 특별활동 운영을 위해 소요되는 경비에 한정하여 지출해야 함</p>
+            </div>
+          </div>`;
+      } else if (currentPage === 1 && currentTab === 2) {
+        w.innerHTML = `
+          <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl p-8 mb-8 text-white">
+            <h2 class="text-3xl font-bold mb-4">누리과정정산</h2>
+            <p class="text-lg opacity-95">누리과정 정산서도 자동으로 출력!</p>
+          </div>
+          <div class="bg-white rounded-xl p-8 mb-6 shadow-sm">
+            <h3 class="text-xl font-bold text-gray-800 mb-5">✨ 주요 기능</h3>
+            <div class="space-y-3">
+              ${['누리과정 정산서도 척척','정산서 출력까지도 자동으로 출력','회계연도 (3월 ~ 2월)과 년도별 (1월 ~12월) 2가지 자동 출력됩니다'].map(t => `<div class="flex items-start gap-3 p-3 bg-green-50 rounded-lg"><span class="text-green-500">✓</span><span class="text-sm text-gray-700">${t}</span></div>`).join('')}
+            </div>
+          </div>
+          <div class="bg-green-50 rounded-xl p-6 border border-green-200">
+            <h4 class="font-bold text-lg text-green-700 mb-5">📚 누리과정 사용항목</h4>
+            <p class="text-sm text-gray-600 mb-4">사용항목: 8개 항목(지자체에서는 지원항목 이외에 사용하지 않도록 지도/관리)</p>
+            <div class="grid grid-cols-2 gap-3">
+              ${['보조교사 인건비(원칙)','환경안전관리기준 준수(환경 보건법)에 따른 개선비용','교사 대상 학습공동체 활동','누리과정 운영 도우미 인건비','교재/교구비 (소모성 재료비 구입 포함) 및 교육기자재 구입비','아동안전과 관련된 물품 구입 및 설치/유지비용','급간식비(기 편성된 급식비를 초과하는 경우만 사용가능)','담당교사 처우개선을 위한 제수당 및 기타 후생경비 지급 비용에만 사용'].map((t,i) => `<div class="flex items-start gap-2 p-3 bg-white rounded-lg text-sm"><span class="text-green-500 font-bold">${i+1})</span><span class="text-gray-700">${t}</span></div>`).join('')}
+            </div>
+            <p class="mt-4 text-sm text-gray-600 bg-white p-3 rounded-lg"><strong>2.</strong> 보조교사 인건비에 우선 활용(보조교사 인건비 사용 후 남은 잔액은 기타 항목 사용 가능)</p>
+          </div>`;
+      } else if (currentPage === 1 && currentTab === 3) {
+        w.innerHTML = `
+          <div class="bg-gradient-to-r from-pink-500 to-pink-600 rounded-2xl p-8 mb-8 text-white">
+            <h2 class="text-3xl font-bold mb-4">시간제보육정산</h2>
+            <p class="text-lg opacity-95">시간제 보육 정산까지 자동으로 척척!</p>
+          </div>
+          <div class="bg-white rounded-xl p-8 mb-6 shadow-sm text-center">
+            <div class="text-6xl mb-4">⏰</div>
+            <h3 class="text-4xl font-bold text-pink-500 mb-4">시간제 보육</h3>
+            <p class="text-lg text-gray-600">엄마의 <strong class="text-pink-500">안심시간</strong>, 아이의 <strong class="text-purple-600">성장시간</strong></p>
+          </div>
+          <div class="bg-pink-50 rounded-xl p-6 mb-6 border border-pink-200">
+            <h4 class="font-bold text-lg text-pink-600 mb-3">🤔 시간제보육이란?</h4>
+            <p class="text-sm text-gray-600 leading-relaxed">가정양육시에도 지정된 제공기관(어린이집, 육아종합지원센터 등)에서 시간단위로 이용하고, 이용한 시간만큼 비용을 지불하는 보육서비스</p>
+          </div>
+          <div class="grid grid-cols-3 gap-5">
+            <div class="bg-white rounded-xl p-6 text-center shadow-sm"><div class="text-5xl mb-3">👶</div><div class="text-sm text-gray-500 mb-2">대상</div><div class="font-semibold text-gray-800">6개월 ~ 36개월 미만 영아<br><span class="text-xs text-gray-500">(양육수당 수급 가구)</span></div></div>
+            <div class="bg-white rounded-xl p-6 text-center shadow-sm"><div class="text-5xl mb-3">📅</div><div class="text-sm text-gray-500 mb-2">시간</div><div class="font-semibold text-gray-800">월~금, 9시 ~ 18시</div></div>
+            <div class="bg-white rounded-xl p-6 text-center shadow-sm"><div class="text-5xl mb-3">💵</div><div class="text-sm text-gray-500 mb-2">비용</div><div class="font-semibold text-gray-800">시간당 1천원</div></div>
+          </div>`;
+      } else {
+        w.innerHTML = `
+          <div class="bg-white rounded-2xl p-12 text-center shadow-sm">
+            <div class="text-6xl mb-5">📋</div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-3">${pageData[currentPage].tabs[currentTab]}</h2>
+            <p class="text-gray-500">상세 내용이 여기에 표시됩니다</p>
+            <div class="mt-8 flex gap-3 justify-center">
+              <button class="px-7 py-3 bg-[#18C9FF] text-white rounded-lg font-semibold hover:bg-sky-500 transition-colors">바로가기</button>
+              <button class="px-7 py-3 bg-white text-gray-700 border-2 border-gray-200 rounded-lg font-semibold hover:bg-gray-50 transition-colors">자세히 보기</button>
+            </div>
+          </div>`;
+      }
+    }
+
+    function openLogin() { document.getElementById('loginModal').classList.remove('hidden'); }
+    function closeLogin(e) { if (e.target === document.getElementById('loginModal')) document.getElementById('loginModal').classList.add('hidden'); }
+    function setLoginType(type) {
+      loginType = type;
+      document.getElementById('daycareBtn').classList.toggle('bg-[#18C9FF]', type === 'daycare');
+      document.getElementById('daycareBtn').classList.toggle('text-white', type === 'daycare');
+      document.getElementById('daycareBtn').classList.toggle('text-gray-500', type !== 'daycare');
+      document.getElementById('kindergartenBtn').classList.toggle('bg-[#18C9FF]', type === 'kindergarten');
+      document.getElementById('kindergartenBtn').classList.toggle('text-white', type === 'kindergarten');
+      document.getElementById('kindergartenBtn').classList.toggle('text-gray-500', type !== 'kindergarten');
+      const ind = document.getElementById('loginIndicator');
+      ind.className = type === 'daycare' ? 'bg-sky-50 text-sky-600 py-3 px-4 rounded-lg mb-5 text-center text-sm font-semibold' : 'bg-amber-50 text-amber-600 py-3 px-4 rounded-lg mb-5 text-center text-sm font-semibold';
+      ind.innerHTML = type === 'daycare' ? '🏫 어린이집 로그인' : '🎒 유치원 로그인';
+    }
+  </script>
+</body>
+</html>
